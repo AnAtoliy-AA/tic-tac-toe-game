@@ -22,7 +22,7 @@ const Title = styled.h1.attrs((props) => ({
     }
   }};
   text-align: center;
-  color: #333; //TODO: colors in constant
+  color: var(--primary);
   margin-top: 20px;
 `
 
