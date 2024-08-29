@@ -20,6 +20,11 @@ export enum BoardSize {
 const SMALL_BOARD_WIN_LINE = BoardSize.SMALL
 const LARGE_BOARD_WIN_LINE = BoardSize.SMALL + 1
 
+export enum CellValues {
+  CROSS = 'x',
+  ZERO = 'o',
+}
+
 export const calculateWinner = (
   squares: Array<string | null>,
   size: number,

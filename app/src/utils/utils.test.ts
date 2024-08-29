@@ -1,4 +1,4 @@
-import { calculateWinner, BoardSize } from './calculateWinner'
+import { calculateWinner, BoardSize, CellValues } from './calculateWinner'
 
 describe('calculateWinner', () => {
   test('should return null for an empty board', () => {
@@ -9,36 +9,76 @@ describe('calculateWinner', () => {
 
   test('should return winner for a 3x3 board with a horizontal win', () => {
     const size = BoardSize.SMALL
-    const squares = ['X', 'X', 'X', null, null, null, null, null, null]
-    expect(calculateWinner(squares, size)).toBe('X')
+    const squares = [
+      CellValues.CROSS,
+      CellValues.CROSS,
+      CellValues.CROSS,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+    ]
+    expect(calculateWinner(squares, size)).toBe(CellValues.CROSS)
   })
 
   test('should return winner for a 3x3 board with a vertical win', () => {
     const size = BoardSize.SMALL
-    const squares = ['O', null, null, 'O', null, null, 'O', null, null]
-    expect(calculateWinner(squares, size)).toBe('O')
+    const squares = [
+      CellValues.ZERO,
+      null,
+      null,
+      CellValues.ZERO,
+      null,
+      null,
+      CellValues.ZERO,
+      null,
+      null,
+    ]
+    expect(calculateWinner(squares, size)).toBe(CellValues.ZERO)
   })
 
   test('should return winner for a 3x3 board with a diagonal win', () => {
     const size = BoardSize.SMALL
-    const squares = ['X', null, null, null, 'X', null, null, null, 'X']
-    expect(calculateWinner(squares, size)).toBe('X')
+    const squares = [
+      CellValues.CROSS,
+      null,
+      null,
+      null,
+      CellValues.CROSS,
+      null,
+      null,
+      null,
+      CellValues.CROSS,
+    ]
+    expect(calculateWinner(squares, size)).toBe(CellValues.CROSS)
   })
 
   test('should return null for a 3x3 board with no winner', () => {
     const size = BoardSize.SMALL
-    const squares = ['X', 'O', 'X', 'O', 'X', 'O', 'O', 'X', 'O']
+    const squares = [
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.ZERO,
+      CellValues.CROSS,
+      CellValues.ZERO,
+    ]
     expect(calculateWinner(squares, size)).toBeNull()
   })
 
   test('should return winner for a 5x5 board with a horizontal win', () => {
     const size = BoardSize.MEDIUM
     const squares = [
-      'X',
-      'X',
-      'X',
-      'X',
-      'X',
+      CellValues.CROSS,
+      CellValues.CROSS,
+      CellValues.CROSS,
+      CellValues.CROSS,
+      CellValues.CROSS,
       null,
       null,
       null,
@@ -60,101 +100,101 @@ describe('calculateWinner', () => {
       null,
       null,
     ]
-    expect(calculateWinner(squares, size)).toBe('X')
+    expect(calculateWinner(squares, size)).toBe(CellValues.CROSS)
   })
 
   test('should return winner for a 5x5 board with a vertical win', () => {
     const size = BoardSize.MEDIUM
     const squares = [
-      'O',
+      CellValues.ZERO,
       null,
       null,
       null,
       null,
-      'O',
+      CellValues.ZERO,
       null,
       null,
       null,
       null,
-      'O',
+      CellValues.ZERO,
       null,
       null,
       null,
       null,
-      'O',
+      CellValues.ZERO,
       null,
       null,
       null,
       null,
-      'O',
+      null,
       null,
       null,
       null,
       null,
     ]
-    expect(calculateWinner(squares, size)).toBe('O')
+    expect(calculateWinner(squares, size)).toBe(CellValues.ZERO)
   })
 
   test('should return winner for a 5x5 board with a diagonal win', () => {
     const size = BoardSize.MEDIUM
     const squares = [
-      'X',
+      CellValues.CROSS,
       null,
       null,
       null,
       null,
       null,
-      'X',
+      CellValues.CROSS,
       null,
       null,
       null,
       null,
       null,
-      'X',
+      CellValues.CROSS,
       null,
       null,
       null,
       null,
       null,
-      'X',
+      CellValues.CROSS,
       null,
       null,
       null,
       null,
       null,
-      'X',
+      CellValues.CROSS,
     ]
-    expect(calculateWinner(squares, size)).toBe('X')
+    expect(calculateWinner(squares, size)).toBe(CellValues.CROSS)
   })
 
   test('should return null for a 5x5 board with no winner', () => {
     const size = BoardSize.MEDIUM
     const squares = [
-      'X',
+      CellValues.CROSS,
       null,
-      'X',
-      'O',
+      CellValues.CROSS,
+      CellValues.ZERO,
       null,
-      'O',
-      'X',
-      'O',
-      'X',
+      CellValues.ZERO,
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.CROSS,
       null,
-      'X',
-      'O',
       null,
-      'O',
-      'X',
+      CellValues.CROSS,
       null,
-      'X',
-      'O',
-      'X',
-      'O',
-      'X',
-      'O',
-      'X',
+      CellValues.ZERO,
+      CellValues.CROSS,
       null,
-      'X',
+      CellValues.ZERO,
+      CellValues.CROSS,
+      null,
+      null,
+      CellValues.CROSS,
+      null,
+      null,
+      CellValues.ZERO,
+      null,
     ]
     expect(calculateWinner(squares, size)).toBeNull()
   })
@@ -162,13 +202,13 @@ describe('calculateWinner', () => {
   test('should return winner for a 7x7 board with a horizontal win', () => {
     const size = BoardSize.LARGE
     const squares = [
-      'X',
-      'X',
-      'X',
-      'X',
-      'X',
-      'X',
-      'X',
+      CellValues.CROSS,
+      CellValues.CROSS,
+      CellValues.CROSS,
+      CellValues.CROSS,
+      CellValues.CROSS,
+      CellValues.CROSS,
+      CellValues.CROSS,
       null,
       null,
       null,
@@ -212,55 +252,55 @@ describe('calculateWinner', () => {
       null,
       null,
     ]
-    expect(calculateWinner(squares, size)).toBe('X')
+    expect(calculateWinner(squares, size)).toBe(CellValues.CROSS)
   })
 
   test('should return winner for a 7x7 board with a vertical win', () => {
     const size = BoardSize.LARGE
     const squares = [
-      'O',
+      CellValues.ZERO,
       null,
       null,
       null,
       null,
       null,
       null,
-      'O',
+      CellValues.ZERO,
       null,
       null,
       null,
       null,
       null,
       null,
-      'O',
+      CellValues.ZERO,
       null,
       null,
       null,
       null,
       null,
       null,
-      'O',
+      CellValues.ZERO,
       null,
       null,
       null,
       null,
       null,
       null,
-      'O',
       null,
       null,
       null,
       null,
       null,
       null,
-      'O',
       null,
       null,
       null,
       null,
       null,
       null,
-      'O',
+      null,
+      null,
+      null,
       null,
       null,
       null,
@@ -268,13 +308,13 @@ describe('calculateWinner', () => {
       null,
       null,
     ]
-    expect(calculateWinner(squares, size)).toBe('O')
+    expect(calculateWinner(squares, size)).toBe(CellValues.ZERO)
   })
 
   test('should return winner for a 7x7 board with a diagonal win', () => {
     const size = BoardSize.LARGE
     const squares = [
-      'X',
+      CellValues.CROSS,
       null,
       null,
       null,
@@ -282,7 +322,7 @@ describe('calculateWinner', () => {
       null,
       null,
       null,
-      'X',
+      CellValues.CROSS,
       null,
       null,
       null,
@@ -290,7 +330,7 @@ describe('calculateWinner', () => {
       null,
       null,
       null,
-      'X',
+      CellValues.CROSS,
       null,
       null,
       null,
@@ -298,7 +338,7 @@ describe('calculateWinner', () => {
       null,
       null,
       null,
-      'X',
+      CellValues.CROSS,
       null,
       null,
       null,
@@ -306,7 +346,7 @@ describe('calculateWinner', () => {
       null,
       null,
       null,
-      'X',
+      CellValues.CROSS,
       null,
       null,
       null,
@@ -314,7 +354,7 @@ describe('calculateWinner', () => {
       null,
       null,
       null,
-      'X',
+      CellValues.CROSS,
       null,
       null,
       null,
@@ -322,9 +362,9 @@ describe('calculateWinner', () => {
       null,
       null,
       null,
-      'X',
+      CellValues.CROSS,
     ]
-    expect(calculateWinner(squares, size)).toBe('X')
+    expect(calculateWinner(squares, size)).toBe(CellValues.CROSS)
   })
 
   test('should return null for a 7x7 board with no winner', () => {
@@ -336,65 +376,65 @@ describe('calculateWinner', () => {
   test('should detect a down-right diagonal win', () => {
     const size = BoardSize.MEDIUM
     const squares = [
-      'X',
+      CellValues.CROSS,
       null,
       null,
       null,
       null,
-      'O',
-      'X',
+      null,
+      CellValues.CROSS,
       null,
       null,
       null,
-      'O',
-      'O',
-      'X',
       null,
       null,
-      'O',
-      'O',
-      'O',
-      'X',
+      CellValues.CROSS,
       null,
-      'X',
-      'X',
-      'X',
-      'X',
-      'X',
+      null,
+      null,
+      null,
+      null,
+      CellValues.CROSS,
+      null,
+      null,
+      null,
+      null,
+      null,
+      CellValues.CROSS,
     ]
-    expect(calculateWinner(squares, size)).toBe('X')
+    expect(calculateWinner(squares, size)).toBe(CellValues.CROSS)
   })
 
   test('should detect a winning down-right diagonal', () => {
     const size = BoardSize.MEDIUM
     const squares = [
-      'X',
+      CellValues.ZERO,
       null,
       null,
       null,
       null,
-      'O',
-      'X',
+      null,
+      CellValues.ZERO,
       null,
       null,
       null,
-      'O',
-      'O',
+      null,
+      null,
+      CellValues.ZERO,
       null,
       null,
       null,
-      'O',
-      'O',
-      'O',
-      'X',
       null,
-      'O',
-      'O',
-      'O',
-      'O',
-      'X',
+      null,
+      CellValues.ZERO,
+      null,
+      null,
+      null,
+      null,
+      null,
+      CellValues.ZERO,
     ]
-    expect(calculateWinner(squares, size)).toBe('O')
+    expect(calculateWinner(squares, size)).toBe(CellValues.ZERO)
   })
 
   test('should detect a winning down-left diagonal', () => {
@@ -404,59 +444,59 @@ describe('calculateWinner', () => {
       null,
       null,
       null,
-      'X',
-      'O',
-      'O',
-      null,
-      'X',
-      null,
-      'O',
-      'O',
-      'O',
-      'X',
-      null,
-      'O',
-      'O',
-      'O',
+      CellValues.ZERO,
       null,
       null,
-      'X',
+      null,
+      CellValues.ZERO,
       null,
       null,
-      'O',
+      null,
+      CellValues.ZERO,
+      null,
+      null,
+      null,
+      CellValues.ZERO,
+      null,
+      null,
+      null,
+      CellValues.ZERO,
+      null,
+      null,
+      null,
       null,
     ]
-    expect(calculateWinner(squares, size)).toBe('O')
+    expect(calculateWinner(squares, size)).toBe(CellValues.ZERO)
   })
 
   test('should return null if no winner with incomplete diagonals', () => {
     const size = BoardSize.MEDIUM
     const squares = [
-      'X',
-      'O',
-      'X',
-      'O',
-      'X',
-      'O',
-      'X',
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.CROSS,
       null,
-      'X',
-      'O',
-      'X',
-      'O',
+      CellValues.ZERO,
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.CROSS,
       null,
-      'O',
-      'X',
-      'O',
-      'X',
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.CROSS,
+      CellValues.ZERO,
       null,
-      'X',
-      'O',
-      'X',
-      'O',
-      'X',
-      'O',
-      'X',
+      CellValues.ZERO,
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.CROSS,
+      CellValues.ZERO,
     ]
     expect(calculateWinner(squares, size)).toBeNull()
   })
@@ -464,31 +504,31 @@ describe('calculateWinner', () => {
   test('should return null for random arrangement without a winning line', () => {
     const size = BoardSize.MEDIUM
     const squares = [
-      'X',
-      'O',
-      'X',
-      'X',
-      'O',
-      'O',
-      'X',
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.CROSS,
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.ZERO,
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.CROSS,
       null,
-      'X',
-      'X',
-      'X',
-      'O',
-      'O',
-      'O',
-      'X',
-      'O',
-      'X',
-      'X',
-      'X',
-      'O',
-      'X',
-      'O',
-      'X',
-      'O',
-      'X',
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.ZERO,
+      null,
+      null,
+      CellValues.ZERO,
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.CROSS,
+      CellValues.ZERO,
+      CellValues.CROSS,
+      null,
+      CellValues.CROSS,
     ]
     expect(calculateWinner(squares, size)).toBeNull()
   })
