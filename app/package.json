@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "prepare": "cd .. && husky install app/.husky",
     "format:fix": "prettier --write .",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "test": "vitest --coverage"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -19,10 +20,12 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@testing-library/react": "^16.0.1",
     "@types/node": "^22.5.1",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
+    "@vitest/coverage-v8": "^2.0.5",
     "eslint": "^9.9.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.3",
@@ -31,10 +34,12 @@
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
     "husky": "^8.0.0",
+    "jsdom": "^25.0.0",
     "lint-staged": "^15.2.9",
     "prettier": "^3.3.3",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "vitest": "^2.0.5"
   }
 }
