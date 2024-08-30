@@ -1,4 +1,4 @@
-import { lazy } from 'react'
+import { lazy, Suspense } from 'react'
 import Title from './components/styled/Title'
 import { AllProviders } from './providers/allProviders'
 
@@ -8,7 +8,9 @@ function App() {
   return (
     <AllProviders>
       <Title as='h1'>Tic Tac Toe Game</Title>
-      <Game />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Game />
+      </Suspense>
     </AllProviders>
   )
 }
