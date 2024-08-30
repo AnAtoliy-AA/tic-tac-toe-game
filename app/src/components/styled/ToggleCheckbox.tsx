@@ -61,7 +61,11 @@ const ToggleCheckbox: FC<ToggleCheckboxProps> = ({
   return (
     <ToggleWrapper>
       <Label>{label}</Label>
-      <HiddenCheckbox checked={isChecked} onChange={toggleCheckbox} />
+      <HiddenCheckbox
+        aria-label={label}
+        checked={isChecked}
+        onChange={toggleCheckbox}
+      />
       <StyledCheckbox checked={isChecked} onClick={toggleCheckbox} />
     </ToggleWrapper>
   )
