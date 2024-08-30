@@ -23,7 +23,6 @@ const Title = styled.h1.attrs((props) => ({
   }};
   text-align: center;
   color: var(--primary);
-  margin-top: 20px;
 `
 
 export default Title

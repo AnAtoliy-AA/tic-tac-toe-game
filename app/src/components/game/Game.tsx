@@ -25,6 +25,7 @@ const MainContent = styled.div``
 const AdditionalContent = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 5rem;
 `
 
 const Game: FC = () => {
