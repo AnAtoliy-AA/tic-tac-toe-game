@@ -75,7 +75,7 @@ const Game: FC = () => {
   }, [])
 
   return (
-    <StyledGame>
+    <StyledGame data-testid='game-component'>
       <MainContent>
         <Board
           size={gameSize}
