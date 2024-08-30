@@ -1,4 +1,3 @@
-import { css } from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 
 // color names used from https://www.color-meanings.com/list-of-colors-names-hex-codes/
@@ -98,48 +97,6 @@ export const THEMES: Record<ThemeType, Theme> = {
     '--button-primary': Color.GRAY,
     '--button-secondary': Color.LIGHT_GRAY,
   },
-}
-
-export const device = {
-  xs: '400px',
-  sm: '600px',
-  md: '900px',
-  lg: '1280px',
-  xl: '1440px',
-  xxl: '1920px',
-}
-
-export const media = {
-  xs: <Props extends TemplateStringsArray>(args: Props) => css`
-    @media (max-width: ${device.xs}) {
-      ${css(args)};
-    }
-  `,
-  sm: <Props extends TemplateStringsArray>(args: Props) => css`
-    @media (max-width: ${device.sm}) {
-      ${css(args)};
-    }
-  `,
-  md: <Props extends TemplateStringsArray>(args: Props) => css`
-    @media (max-width: ${device.md}) {
-      ${css(args)};
-    }
-  `,
-  lg: <Props extends TemplateStringsArray>(args: Props) => css`
-    @media (max-width: ${device.lg}) {
-      ${css(args)};
-    }
-  `,
-  xl: <Props extends TemplateStringsArray>(args: Props) => css`
-    @media (max-width: ${device.xl}) {
-      ${css(args)};
-    }
-  `,
-  xxl: <Props extends TemplateStringsArray>(args: Props) => css`
-    @media (max-width: ${device.xxl}) {
-      ${css(args)};
-    }
-  `,
 }
 
 const GlobalStyle = createGlobalStyle`
