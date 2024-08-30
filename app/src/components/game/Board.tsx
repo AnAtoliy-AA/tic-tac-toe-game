@@ -11,7 +11,7 @@ export interface BoardProps {
 
 const StyledBoard = styled.div<{ size: number }>`
   display: grid;
-  grid-template-columns: repeat(${(props) => props.size}, 1fr);
+  grid-template-columns: repeat(${({ size }) => size}, 1fr);
   gap: 0.5rem;
 `
 

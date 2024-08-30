@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useCallback } from 'react'
 import { Button } from '../styled/Button'
 import Title from '../styled/Title'
 import styled from 'styled-components'
@@ -20,10 +20,13 @@ const GameHistory: FC<GameHistoryProps> = ({
   setStepNumber,
   setIsXNext,
 }) => {
-  const jumpTo = (step: number) => {
-    setStepNumber(step)
-    setIsXNext(step % 2 === 0)
-  }
+  const jumpTo = useCallback(
+    (step: number) => () => {
+      setStepNumber(step)
+      setIsXNext(step % 2 === 0)
+    },
+    [setIsXNext, setStepNumber],
+  )
 
   return (
     <div>
@@ -35,7 +38,7 @@ const GameHistory: FC<GameHistoryProps> = ({
 
           return (
             <li key={move}>
-              <Button onClick={() => jumpTo(move)}>{desc}</Button>
+              <Button onClick={jumpTo(move)}>{desc}</Button>
             </li>
           )
         })}

@@ -9,6 +9,7 @@ const Settings = lazy(() => import('./Settings'))
 const GameHistory = lazy(() => import('./GameHistory'))
 
 const createHistory = (size: number) => [Array(size * size).fill(null)]
+
 const DEFAULT_GAME_SIZE = 3
 const DEFAULT_GAME_HISTORY = createHistory(DEFAULT_GAME_SIZE)
 const DEFAULT_STEP_NUMBER = 0

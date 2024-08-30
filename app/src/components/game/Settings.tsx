@@ -13,6 +13,7 @@ const dropdownItems = Object.values(BoardSize)
 const SettingsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 `
 
 interface SettingsProps {
