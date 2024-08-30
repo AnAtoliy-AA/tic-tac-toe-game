@@ -1,6 +1,8 @@
-import Game from './components/game/Game'
+import { lazy } from 'react'
 import Title from './components/styled/Title'
 import { AllProviders } from './providers/allProviders'
+
+const Game = lazy(() => import('./components/game/Game'))
 
 function App() {
   return (

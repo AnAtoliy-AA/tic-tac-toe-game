@@ -1,10 +1,11 @@
-import { FC, useCallback, useState } from 'react'
-import Board from './Board'
+import { FC, lazy, useCallback, useState } from 'react'
 import { calculateWinner } from '../../utils/calculateWinner'
-import GameInfo from './GameInfo'
 import styled from 'styled-components'
-import Settings from './Settings'
-import GameHistory from './GameHistory'
+
+const Board = lazy(() => import('./Board'))
+const GameInfo = lazy(() => import('./GameInfo'))
+const Settings = lazy(() => import('./Settings'))
+const GameHistory = lazy(() => import('./GameHistory'))
 
 const createHistory = (size: number) => [Array(size * size).fill(null)]
 const DEFAULT_GAME_SIZE = 3
@@ -61,13 +62,15 @@ const Game: FC = () => {
         setIsXNext={setIsXNext}
         setStepNumber={setStepNumber}
       />
-      <Board
-        size={gameSize}
-        squares={current}
-        onClick={handleClick}
-        winningCells={winningCells}
-      />
-      <GameInfo winner={winner} isXNext={isXNext} />
+      <div>
+        <Board
+          size={gameSize}
+          squares={current}
+          onClick={handleClick}
+          winningCells={winningCells}
+        />
+        <GameInfo winner={winner} isXNext={isXNext} />
+      </div>
       <Settings gameSize={gameSize} onChangeGameSize={handleChangeGameSize} />
     </StyledGame>
   )
