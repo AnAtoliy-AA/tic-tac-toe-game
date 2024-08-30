@@ -4,7 +4,7 @@ describe('calculateWinner', () => {
   test('should return null for an empty board', () => {
     const size = BoardSize.SMALL
     const squares = Array(size * size).fill(null)
-    expect(calculateWinner(squares, size)).toBeNull()
+    expect(calculateWinner(squares, size).winner).toBeNull()
   })
 
   test('should return winner for a 3x3 board with a horizontal win', () => {
@@ -20,7 +20,7 @@ describe('calculateWinner', () => {
       null,
       null,
     ]
-    expect(calculateWinner(squares, size)).toBe(CellValues.CROSS)
+    expect(calculateWinner(squares, size).winner).toBe(CellValues.CROSS)
   })
 
   test('should return winner for a 3x3 board with a vertical win', () => {
@@ -36,7 +36,7 @@ describe('calculateWinner', () => {
       null,
       null,
     ]
-    expect(calculateWinner(squares, size)).toBe(CellValues.ZERO)
+    expect(calculateWinner(squares, size).winner).toBe(CellValues.ZERO)
   })
 
   test('should return winner for a 3x3 board with a diagonal win', () => {
@@ -52,7 +52,7 @@ describe('calculateWinner', () => {
       null,
       CellValues.CROSS,
     ]
-    expect(calculateWinner(squares, size)).toBe(CellValues.CROSS)
+    expect(calculateWinner(squares, size).winner).toBe(CellValues.CROSS)
   })
 
   test('should return null for a 3x3 board with no winner', () => {
@@ -68,7 +68,7 @@ describe('calculateWinner', () => {
       CellValues.CROSS,
       CellValues.ZERO,
     ]
-    expect(calculateWinner(squares, size)).toBeNull()
+    expect(calculateWinner(squares, size).winner).toBeNull()
   })
 
   test('should return winner for a 5x5 board with a horizontal win', () => {
@@ -100,7 +100,7 @@ describe('calculateWinner', () => {
       null,
       null,
     ]
-    expect(calculateWinner(squares, size)).toBe(CellValues.CROSS)
+    expect(calculateWinner(squares, size).winner).toBe(CellValues.CROSS)
   })
 
   test('should return winner for a 5x5 board with a vertical win', () => {
@@ -132,7 +132,7 @@ describe('calculateWinner', () => {
       null,
       null,
     ]
-    expect(calculateWinner(squares, size)).toBe(CellValues.ZERO)
+    expect(calculateWinner(squares, size).winner).toBe(CellValues.ZERO)
   })
 
   test('should return winner for a 5x5 board with a diagonal win', () => {
@@ -164,7 +164,7 @@ describe('calculateWinner', () => {
       null,
       CellValues.CROSS,
     ]
-    expect(calculateWinner(squares, size)).toBe(CellValues.CROSS)
+    expect(calculateWinner(squares, size).winner).toBe(CellValues.CROSS)
   })
 
   test('should return null for a 5x5 board with no winner', () => {
@@ -196,7 +196,7 @@ describe('calculateWinner', () => {
       CellValues.ZERO,
       null,
     ]
-    expect(calculateWinner(squares, size)).toBeNull()
+    expect(calculateWinner(squares, size).winner).toBeNull()
   })
 
   test('should return winner for a 7x7 board with a horizontal win', () => {
@@ -252,7 +252,7 @@ describe('calculateWinner', () => {
       null,
       null,
     ]
-    expect(calculateWinner(squares, size)).toBe(CellValues.CROSS)
+    expect(calculateWinner(squares, size).winner).toBe(CellValues.CROSS)
   })
 
   test('should return winner for a 7x7 board with a vertical win', () => {
@@ -308,7 +308,7 @@ describe('calculateWinner', () => {
       null,
       null,
     ]
-    expect(calculateWinner(squares, size)).toBe(CellValues.ZERO)
+    expect(calculateWinner(squares, size).winner).toBe(CellValues.ZERO)
   })
 
   test('should return winner for a 7x7 board with a diagonal win', () => {
@@ -364,13 +364,13 @@ describe('calculateWinner', () => {
       null,
       CellValues.CROSS,
     ]
-    expect(calculateWinner(squares, size)).toBe(CellValues.CROSS)
+    expect(calculateWinner(squares, size).winner).toBe(CellValues.CROSS)
   })
 
   test('should return null for a 7x7 board with no winner', () => {
     const size = BoardSize.LARGE
     const squares = Array(size * size).fill(null)
-    expect(calculateWinner(squares, size)).toBeNull()
+    expect(calculateWinner(squares, size).winner).toBeNull()
   })
 
   test('should detect a down-right diagonal win', () => {
@@ -402,7 +402,7 @@ describe('calculateWinner', () => {
       null,
       CellValues.CROSS,
     ]
-    expect(calculateWinner(squares, size)).toBe(CellValues.CROSS)
+    expect(calculateWinner(squares, size).winner).toBe(CellValues.CROSS)
   })
 
   test('should detect a winning down-right diagonal', () => {
@@ -434,7 +434,7 @@ describe('calculateWinner', () => {
       null,
       CellValues.ZERO,
     ]
-    expect(calculateWinner(squares, size)).toBe(CellValues.ZERO)
+    expect(calculateWinner(squares, size).winner).toBe(CellValues.ZERO)
   })
 
   test('should detect a winning down-left diagonal', () => {
@@ -466,7 +466,7 @@ describe('calculateWinner', () => {
       null,
       null,
     ]
-    expect(calculateWinner(squares, size)).toBe(CellValues.ZERO)
+    expect(calculateWinner(squares, size).winner).toBe(CellValues.ZERO)
   })
 
   test('should return null if no winner with incomplete diagonals', () => {
@@ -498,7 +498,7 @@ describe('calculateWinner', () => {
       CellValues.CROSS,
       CellValues.ZERO,
     ]
-    expect(calculateWinner(squares, size)).toBeNull()
+    expect(calculateWinner(squares, size).winner).toBeNull()
   })
 
   test('should return null for random arrangement without a winning line', () => {
@@ -530,6 +530,6 @@ describe('calculateWinner', () => {
       null,
       CellValues.CROSS,
     ]
-    expect(calculateWinner(squares, size)).toBeNull()
+    expect(calculateWinner(squares, size).winner).toBeNull()
   })
 })

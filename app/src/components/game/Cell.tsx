@@ -4,6 +4,7 @@ import { CellValues } from '../../utils/calculateWinner'
 
 interface CellProps {
   value: string | null
+  isWinningCell: boolean
   onClick: VoidFunction
 }
 
@@ -18,9 +19,11 @@ const getColor = (value: string | null): string => {
   }
 }
 
-const StyledCell = styled.div<{ value: string | null }>`
+const StyledCell = styled.div<{ value: string | null; isWinningCell: boolean }>`
   background: var(--background);
-  border: 1px solid var(--background-secondary);
+  border: 1px solid;
+  border-color: ${({ isWinningCell }) =>
+    isWinningCell ? 'var(--error)' : 'var(--background-secondary)'};
   color: ${({ value }) => getColor(value)};
   font-size: 3rem;
   padding: 0;
@@ -29,8 +32,8 @@ const StyledCell = styled.div<{ value: string | null }>`
   height: 5rem;
 `
 
-const Cell: FC<CellProps> = ({ value, onClick }) => (
-  <StyledCell value={value} onClick={onClick}>
+const Cell: FC<CellProps> = ({ value, isWinningCell, onClick }) => (
+  <StyledCell value={value} onClick={onClick} isWinningCell={isWinningCell}>
     {value}
   </StyledCell>
 )

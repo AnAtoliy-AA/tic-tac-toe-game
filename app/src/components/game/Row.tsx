@@ -11,7 +11,13 @@ interface RowProps extends BoardProps {
   rowIndex: number
 }
 
-const Row: FC<RowProps> = ({ size, squares, rowIndex, onClick }) => {
+const Row: FC<RowProps> = ({
+  size,
+  squares,
+  rowIndex,
+  winningCells,
+  onClick,
+}) => {
   const rowStart = rowIndex * size
 
   const handleClick = useCallback(
@@ -25,9 +31,15 @@ const Row: FC<RowProps> = ({ size, squares, rowIndex, onClick }) => {
         .fill(null)
         .map((_, colIndex) => {
           const key = rowStart + colIndex
+          const isWinningCell = !!winningCells?.includes(key)
 
           return (
-            <Cell key={key} value={squares[key]} onClick={handleClick(key)} />
+            <Cell
+              key={key}
+              value={squares[key]}
+              onClick={handleClick(key)}
+              isWinningCell={isWinningCell}
+            />
           )
         })}
     </StyledRow>

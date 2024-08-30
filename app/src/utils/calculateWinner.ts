@@ -1,14 +1,19 @@
 const checkLine = (
   squares: Array<string | null>,
   line: number[],
-): string | null => {
+): number[] | null => {
   const [a, b, c, d] = line
-  return squares[a] &&
+  if (
+    squares &&
+    squares[a] &&
     squares[a] === squares[b] &&
     squares[a] === squares[c] &&
     (d === undefined || squares[a] === squares[d])
-    ? squares[a]
-    : null
+  ) {
+    return line
+  }
+
+  return null
 }
 
 export enum BoardSize {
@@ -28,7 +33,7 @@ export enum CellValues {
 export const calculateWinner = (
   squares: Array<string | null>,
   size: number,
-): string | null => {
+): { winner: string | null; winningCells: number[] | null } => {
   const winLength =
     size >= BoardSize.MEDIUM ? LARGE_BOARD_WIN_LINE : SMALL_BOARD_WIN_LINE
 
@@ -39,8 +44,9 @@ export const calculateWinner = (
         (_, k) => i * size + j + k,
       )
 
-      if (checkLine(squares, horizontalLine)) {
-        return squares[horizontalLine[0]]
+      const winningCells = checkLine(squares, horizontalLine)
+      if (winningCells) {
+        return { winner: squares[horizontalLine[0]], winningCells }
       }
 
       const verticalLine = Array.from(
@@ -48,8 +54,12 @@ export const calculateWinner = (
         (_, k) => (j + k) * size + i,
       )
 
-      if (checkLine(squares, verticalLine)) {
-        return squares[verticalLine[0]]
+      const winningCellsVertical = checkLine(squares, verticalLine)
+      if (winningCellsVertical) {
+        return {
+          winner: squares[verticalLine[0]],
+          winningCells: winningCellsVertical,
+        }
       }
     }
   }
@@ -61,19 +71,28 @@ export const calculateWinner = (
         (_, k) => (i + k) * size + j + k,
       )
 
-      if (checkLine(squares, downRightDiagonal)) {
-        return squares[downRightDiagonal[0]]
+      const winningCellsDownRight = checkLine(squares, downRightDiagonal)
+      if (winningCellsDownRight) {
+        return {
+          winner: squares[downRightDiagonal[0]],
+          winningCells: winningCellsDownRight,
+        }
       }
 
       const downLeftDiagonal = Array.from(
         { length: winLength },
         (_, k) => (i + k) * size + j + winLength - 1 - k,
       )
-      if (checkLine(squares, downLeftDiagonal)) {
-        return squares[downLeftDiagonal[0]]
+
+      const winningCellsDownLeft = checkLine(squares, downLeftDiagonal)
+      if (winningCellsDownLeft) {
+        return {
+          winner: squares[downLeftDiagonal[0]],
+          winningCells: winningCellsDownLeft,
+        }
       }
     }
   }
 
-  return null
+  return { winner: null, winningCells: null }
 }

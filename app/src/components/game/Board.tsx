@@ -4,10 +4,11 @@ import Row from './Row'
 export interface BoardProps {
   size: number
   squares: Array<string | null>
+  winningCells: Array<number> | null
   onClick: (i: number) => void
 }
 
-const Board: FC<BoardProps> = ({ size, squares, onClick }) => {
+const Board: FC<BoardProps> = ({ size, squares, winningCells, onClick }) => {
   return (
     <div>
       {Array(size)
@@ -19,6 +20,7 @@ const Board: FC<BoardProps> = ({ size, squares, onClick }) => {
               size={size}
               squares={squares}
               rowIndex={rowIndex}
+              winningCells={winningCells}
               onClick={onClick}
             />
           )

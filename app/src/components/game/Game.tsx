@@ -25,7 +25,7 @@ const Game: FC = () => {
   const [gameSize, setGameSize] = useState<number>(DEFAULT_GAME_SIZE)
 
   const current = history[stepNumber]
-  const winner = calculateWinner(current, gameSize)
+  const { winner, winningCells } = calculateWinner(current, gameSize)
 
   const handleClick = useCallback(
     (i: number) => {
@@ -61,7 +61,12 @@ const Game: FC = () => {
         setIsXNext={setIsXNext}
         setStepNumber={setStepNumber}
       />
-      <Board size={gameSize} squares={current} onClick={handleClick} />
+      <Board
+        size={gameSize}
+        squares={current}
+        onClick={handleClick}
+        winningCells={winningCells}
+      />
       <GameInfo winner={winner} isXNext={isXNext} />
       <Settings gameSize={gameSize} onChangeGameSize={handleChangeGameSize} />
     </StyledGame>
