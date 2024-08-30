@@ -79,7 +79,7 @@ export const THEMES: Record<ThemeType, Theme> = {
   },
   dark: {
     '--primary': Color.PURPLE,
-    '--secondary': Color.WHITE,
+    '--secondary': Color.JADE_GREEN,
     '--background': Color.GRAY,
     '--background-secondary': Color.BABY_BLUE,
     '--text': Color.WHITE,
