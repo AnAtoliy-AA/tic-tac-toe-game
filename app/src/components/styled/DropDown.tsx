@@ -32,7 +32,7 @@ const DropdownContent = styled.div<{ $isOpen: boolean }>`
   overflow: 'hidden';
 `
 
-const DropdownItem = styled.a`
+const DropdownItem = styled.p`
   color: var(--text);
   padding: 0.75rem 1rem;
   text-decoration: none;
