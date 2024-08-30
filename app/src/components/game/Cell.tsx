@@ -19,11 +19,14 @@ const getColor = (value: string | null): string => {
   }
 }
 
-const StyledCell = styled.div<{ value: string | null; isWinningCell: boolean }>`
+const StyledCell = styled.div<{
+  value: string | null
+  $isWinningCell: boolean
+}>`
   background: var(--background);
   border: 1px solid;
-  border-color: ${({ isWinningCell }) =>
-    isWinningCell ? 'var(--error)' : 'var(--background-secondary)'};
+  border-color: ${({ $isWinningCell }) =>
+    $isWinningCell ? 'var(--error)' : 'var(--background-secondary)'};
   color: ${({ value }) => getColor(value)};
   font-size: 3rem;
   padding: 0;
@@ -33,7 +36,7 @@ const StyledCell = styled.div<{ value: string | null; isWinningCell: boolean }>`
 `
 
 const Cell: FC<CellProps> = ({ value, isWinningCell, onClick }) => (
-  <StyledCell value={value} onClick={onClick} isWinningCell={isWinningCell}>
+  <StyledCell value={value} onClick={onClick} $isWinningCell={isWinningCell}>
     {value}
   </StyledCell>
 )
