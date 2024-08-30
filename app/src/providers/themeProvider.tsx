@@ -6,11 +6,12 @@ import {
   Dispatch,
 } from 'react'
 import { THEMES, Theme, ThemeType } from '../constants/styles/theme'
+import { CSSProperties } from 'styled-components'
 
 interface ThemeContextProps {
   themeType: ThemeType
   theme: Theme
-  setCurrentTheme: Dispatch<SetStateAction<ThemeType>> | null //you can use it for theme mode switching(switcher not implemented)
+  setCurrentTheme: Dispatch<SetStateAction<ThemeType>> | null
 }
 
 export const ThemeContext = createContext<ThemeContextProps>({
@@ -21,16 +22,17 @@ export const ThemeContext = createContext<ThemeContextProps>({
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [currentTheme, setCurrentTheme] = useState<ThemeType>('light')
+  const theme = THEMES[currentTheme]
 
   return (
     <ThemeContext.Provider
       value={{
         themeType: currentTheme,
-        theme: THEMES[currentTheme],
+        theme,
         setCurrentTheme,
       }}
     >
-      {children}
+      <div style={{ ...theme } as CSSProperties}>{children}</div>
     </ThemeContext.Provider>
   )
 }

@@ -3,6 +3,7 @@ import Board from './Board'
 import { calculateWinner } from '../../utils/calculateWinner'
 import GameInfo from './GameInfo'
 import styled from 'styled-components'
+import Settings from './Settings'
 
 const DEFAULT_GAME_SIZE = 3
 const DEFAULT_GAME_HISTORY = [
@@ -42,6 +43,7 @@ const Game: FC = () => {
 
   return (
     <StyledGame>
+      <Settings />
       <Board size={DEFAULT_GAME_SIZE} squares={current} onClick={handleClick} />
       <GameInfo winner={winner} isXNext={isXNext} />
     </StyledGame>
