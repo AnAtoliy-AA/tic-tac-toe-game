@@ -52,7 +52,7 @@ const StyledCell = styled.div<{
   $isWinningCell: boolean
 }>`
   background: var(--background);
-  border: 1px solid;
+  border: 2px solid;
   border-color: ${({ $isWinningCell }) =>
     $isWinningCell ? 'var(--error)' : 'var(--background-secondary)'};
   color: ${({ value }) => getColor(value)};

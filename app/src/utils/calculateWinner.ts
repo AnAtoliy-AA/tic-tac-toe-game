@@ -33,7 +33,11 @@ export enum CellValues {
 export const calculateWinner = (
   squares: Array<string | null>,
   size: number,
-): { winner: string | null; winningCells: number[] | null } => {
+): {
+  winner: string | null
+  winningCells: number[] | null
+  isDraw: boolean
+} => {
   const winLength =
     size >= BoardSize.MEDIUM ? LARGE_BOARD_WIN_LINE : SMALL_BOARD_WIN_LINE
 
@@ -46,7 +50,11 @@ export const calculateWinner = (
 
       const winningCells = checkLine(squares, horizontalLine)
       if (winningCells) {
-        return { winner: squares[horizontalLine[0]], winningCells }
+        return {
+          winner: squares[horizontalLine[0]],
+          winningCells,
+          isDraw: false,
+        }
       }
 
       const verticalLine = Array.from(
@@ -59,6 +67,7 @@ export const calculateWinner = (
         return {
           winner: squares[verticalLine[0]],
           winningCells: winningCellsVertical,
+          isDraw: false,
         }
       }
     }
@@ -76,6 +85,7 @@ export const calculateWinner = (
         return {
           winner: squares[downRightDiagonal[0]],
           winningCells: winningCellsDownRight,
+          isDraw: false,
         }
       }
 
@@ -89,10 +99,13 @@ export const calculateWinner = (
         return {
           winner: squares[downLeftDiagonal[0]],
           winningCells: winningCellsDownLeft,
+          isDraw: false,
         }
       }
     }
   }
 
-  return { winner: null, winningCells: null }
+  const isDraw = squares.every((square) => square !== null)
+
+  return { winner: null, winningCells: null, isDraw }
 }

@@ -1,6 +1,7 @@
-import { FC, lazy, useCallback, useState } from 'react'
+import { FC, lazy, useCallback, useMemo, useState } from 'react'
 import { calculateWinner } from '../../utils/calculateWinner'
 import styled from 'styled-components'
+import { ModalContainer } from '../styled/Modal/ModalContainer'
 
 const Board = lazy(() => import('./Board'))
 const GameInfo = lazy(() => import('./GameInfo'))
@@ -35,8 +36,11 @@ const Game: FC = () => {
   const [isXNext, setIsXNext] = useState<boolean>(true)
   const [gameSize, setGameSize] = useState<number>(DEFAULT_GAME_SIZE)
 
-  const current = history[stepNumber]
-  const { winner, winningCells } = calculateWinner(current, gameSize)
+  const current = useMemo(() => history[stepNumber], [history, stepNumber])
+  const { winner, isDraw, winningCells } = useMemo(
+    () => calculateWinner(current, gameSize),
+    [current, gameSize],
+  )
 
   const handleClick = useCallback(
     (i: number) => {
@@ -66,6 +70,10 @@ const Game: FC = () => {
     [setGameSize],
   )
 
+  const handleCloseModal = useCallback(() => {
+    setStepNumber(DEFAULT_STEP_NUMBER)
+  }, [])
+
   return (
     <StyledGame>
       <MainContent>
@@ -85,6 +93,12 @@ const Game: FC = () => {
           setStepNumber={setStepNumber}
         />
       </AdditionalContent>
+      <ModalContainer
+        isModalShown={!!winner || isDraw}
+        onClick={handleCloseModal}
+      >
+        <GameInfo winner={winner} isDraw={isDraw} isXNext={isXNext} />
+      </ModalContainer>
     </StyledGame>
   )
 }
