@@ -57,10 +57,12 @@ const StyledCell = styled.div<{
     $isWinningCell ? 'var(--error)' : 'var(--background-secondary)'};
   color: ${({ value }) => getColor(value)};
   font-size: ${({ size }) => getFontSize(size)};
-  padding: 0;
-  text-align: center;
   width: ${({ size }) => getSize(size)};
   height: ${({ size }) => getSize(size)};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 `
 
 const Cell: FC<CellProps> = ({ value, size, isWinningCell, onClick }) => (

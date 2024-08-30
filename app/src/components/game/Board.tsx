@@ -1,5 +1,6 @@
-import { FC } from 'react'
-import Row from './Row'
+import { FC, useCallback } from 'react'
+import Cell from './Cell'
+import styled from 'styled-components'
 
 export interface BoardProps {
   size: number
@@ -8,24 +9,36 @@ export interface BoardProps {
   onClick: (i: number) => void
 }
 
+const StyledBoard = styled.div<{ size: number }>`
+  display: grid;
+  grid-template-columns: repeat(${(props) => props.size}, 1fr);
+  gap: 0.5rem;
+`
+
 const Board: FC<BoardProps> = ({ size, squares, winningCells, onClick }) => {
+  const handleClick = useCallback(
+    (key: number) => () => onClick(key),
+    [onClick],
+  )
+
   return (
-    <div>
-      {Array(size)
+    <StyledBoard size={size}>
+      {Array(size * size)
         .fill(null)
-        .map((_, rowIndex) => {
+        .map((_, index) => {
+          const isWinningCell = !!winningCells?.includes(index)
+
           return (
-            <Row
-              key={rowIndex}
+            <Cell
+              key={index}
               size={size}
-              squares={squares}
-              rowIndex={rowIndex}
-              winningCells={winningCells}
-              onClick={onClick}
+              value={squares[index]}
+              onClick={handleClick(index)}
+              isWinningCell={isWinningCell}
             />
           )
         })}
-    </div>
+    </StyledBoard>
   )
 }
 
