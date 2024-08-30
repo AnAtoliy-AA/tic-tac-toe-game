@@ -23,7 +23,11 @@ const Settings: FC<SettingsProps> = ({ gameSize, onChangeGameSize }) => {
 
   return (
     <>
-      <ToggleCheckbox isChecked={isDarkTheme} toggleCheckbox={toggleTheme} />
+      <ToggleCheckbox
+        label='Change Theme'
+        isChecked={isDarkTheme}
+        toggleCheckbox={toggleTheme}
+      />
       <Dropdown
         value={gameSize}
         text='Change game size'

@@ -32,7 +32,7 @@ const StyledCheckbox = styled.div<{ checked: boolean }>`
     display: block;
     width: 1.25rem;
     height: 1.25rem;
-    background-color: var(--text);
+    background-color: var(--text-light);
     border-radius: 50%;
     position: absolute;
     top: 0.125rem;
@@ -41,17 +41,26 @@ const StyledCheckbox = styled.div<{ checked: boolean }>`
   }
 `
 
+const Label = styled.label`
+  display: inline-block;
+  margin-right: 0.5rem;
+  cursor: pointer;
+`
+
 interface ToggleCheckboxProps {
   isChecked: boolean
   toggleCheckbox: VoidFunction
+  label: string
 }
 
 const ToggleCheckbox: FC<ToggleCheckboxProps> = ({
   isChecked,
   toggleCheckbox,
+  label,
 }) => {
   return (
     <ToggleWrapper>
+      <Label>{label}</Label>
       <HiddenCheckbox checked={isChecked} onChange={toggleCheckbox} />
       <StyledCheckbox checked={isChecked} onClick={toggleCheckbox} />
     </ToggleWrapper>

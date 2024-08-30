@@ -11,7 +11,7 @@ const GameInfo: FC<GameInfoProps> = ({ winner, isXNext }) => {
     ? 'Winner: ' + winner
     : 'Next Player: ' + (isXNext ? 'X' : 'O')
 
-  return <Title as='h4'>{infoString}</Title>
+  return <Title as='h2'>{infoString}</Title>
 }
 
 export default GameInfo

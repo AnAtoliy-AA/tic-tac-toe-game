@@ -8,7 +8,7 @@ const StyledDropdown = styled.div`
 
 const DropdownButton = styled.button`
   background-color: var(--primary);
-  color: var(--text);
+  color: var(--text-light);
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border: none;
@@ -17,7 +17,7 @@ const DropdownButton = styled.button`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: var(--primary-dark);
+    background-color: var(--secondary);
   }
 `
 
