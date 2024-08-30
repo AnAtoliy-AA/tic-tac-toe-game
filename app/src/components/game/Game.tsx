@@ -11,7 +11,6 @@ const DEFAULT_GAME_HISTORY = createHistory(DEFAULT_GAME_SIZE)
 
 const StyledGame = styled.div`
   margin: 0 auto;
-  width: 15rem;
 `
 
 const Game: FC = () => {
@@ -53,9 +52,9 @@ const Game: FC = () => {
 
   return (
     <StyledGame>
-      <Settings gameSize={gameSize} onChangeGameSize={handleChangeGameSize} />
       <Board size={gameSize} squares={current} onClick={handleClick} />
       <GameInfo winner={winner} isXNext={isXNext} />
+      <Settings gameSize={gameSize} onChangeGameSize={handleChangeGameSize} />
     </StyledGame>
   )
 }

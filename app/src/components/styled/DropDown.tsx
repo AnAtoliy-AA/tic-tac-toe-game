@@ -1,24 +1,10 @@
 import { FC, useCallback, useState } from 'react'
 import styled from 'styled-components'
+import { Button } from './Button'
 
 const StyledDropdown = styled.div`
   position: relative;
   display: inline-block;
-`
-
-const DropdownButton = styled.button`
-  background-color: var(--primary);
-  color: var(--text-light);
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: var(--secondary);
-  }
 `
 
 const DropdownContent = styled.div<{ $isOpen: boolean }>`
@@ -68,9 +54,7 @@ const Dropdown: FC<DropdownProps> = ({ items, text, onSelect }) => {
 
   return (
     <StyledDropdown>
-      <DropdownButton onClick={toggleOpen}>
-        {text || 'Select an option'}
-      </DropdownButton>
+      <Button onClick={toggleOpen}>{text || 'Select an option'}</Button>
       <DropdownContent $isOpen={isOpen}>
         {items.map((item, index) => (
           <DropdownItem key={index} onClick={handleSelect(item)}>
