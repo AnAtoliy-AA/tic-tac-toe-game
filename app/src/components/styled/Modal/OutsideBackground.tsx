@@ -5,4 +5,5 @@ export const OutsideBackground = styled(ModalWrapper)`
   background-color: var(--text);
   opacity: 0.85;
   z-index: 150;
+  cursor: pointer;
 `

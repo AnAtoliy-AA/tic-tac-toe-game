@@ -25,6 +25,7 @@ const DropdownItem = styled.p`
   display: block;
   transition: background-color 0.3s;
   border: 1px solid var(--background);
+  cursor: pointer;
 
   &:hover {
     background-color: var(--primary-light);
