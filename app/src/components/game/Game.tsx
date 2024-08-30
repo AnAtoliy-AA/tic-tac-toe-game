@@ -4,6 +4,7 @@ import { calculateWinner } from '../../utils/calculateWinner'
 import GameInfo from './GameInfo'
 import styled from 'styled-components'
 import Settings from './Settings'
+import GameHistory from './GameHistory'
 
 const createHistory = (size: number) => [Array(size * size).fill(null)]
 const DEFAULT_GAME_SIZE = 3
@@ -11,6 +12,9 @@ const DEFAULT_GAME_HISTORY = createHistory(DEFAULT_GAME_SIZE)
 
 const StyledGame = styled.div`
   margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 `
 
 const Game: FC = () => {
@@ -52,6 +56,11 @@ const Game: FC = () => {
 
   return (
     <StyledGame>
+      <GameHistory
+        gameHistory={history}
+        setIsXNext={setIsXNext}
+        setStepNumber={setStepNumber}
+      />
       <Board size={gameSize} squares={current} onClick={handleClick} />
       <GameInfo winner={winner} isXNext={isXNext} />
       <Settings gameSize={gameSize} onChangeGameSize={handleChangeGameSize} />

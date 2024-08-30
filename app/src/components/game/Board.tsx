@@ -9,7 +9,7 @@ export interface BoardProps {
 
 const Board: FC<BoardProps> = ({ size, squares, onClick }) => {
   return (
-    <>
+    <div>
       {Array(size)
         .fill(null)
         .map((_, rowIndex) => {
@@ -23,7 +23,7 @@ const Board: FC<BoardProps> = ({ size, squares, onClick }) => {
             />
           )
         })}
-    </>
+    </div>
   )
 }
 
