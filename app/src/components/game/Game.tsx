@@ -10,6 +10,7 @@ const GameHistory = lazy(() => import('./GameHistory'))
 const createHistory = (size: number) => [Array(size * size).fill(null)]
 const DEFAULT_GAME_SIZE = 3
 const DEFAULT_GAME_HISTORY = createHistory(DEFAULT_GAME_SIZE)
+const DEFAULT_STEP_NUMBER = 0
 
 const StyledGame = styled.div`
   margin: 0 auto;
@@ -21,7 +22,7 @@ const StyledGame = styled.div`
 const Game: FC = () => {
   const [history, setHistory] =
     useState<Array<Array<string | null>>>(DEFAULT_GAME_HISTORY)
-  const [stepNumber, setStepNumber] = useState<number>(0)
+  const [stepNumber, setStepNumber] = useState<number>(DEFAULT_STEP_NUMBER)
   const [isXNext, setIsXNext] = useState<boolean>(true)
   const [gameSize, setGameSize] = useState<number>(DEFAULT_GAME_SIZE)
 
@@ -51,6 +52,7 @@ const Game: FC = () => {
 
       setGameSize(size)
       setHistory(createHistory(size))
+      setStepNumber(DEFAULT_STEP_NUMBER)
     },
     [setGameSize],
   )
