@@ -1,6 +1,13 @@
 import { FC } from 'react'
 import { Button } from '../styled/Button'
 import Title from '../styled/Title'
+import styled from 'styled-components'
+
+const StyledList = styled.ol`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`
 
 interface GameHistoryProps {
   gameHistory: Array<Array<string | null>>
@@ -22,7 +29,7 @@ const GameHistory: FC<GameHistoryProps> = ({
     <div>
       <Title as='h2'>Game history:</Title>
 
-      <ol>
+      <StyledList>
         {gameHistory.map((_step, move) => {
           const desc = move ? `Go to move #${move}` : 'Go to game start'
 
@@ -32,7 +39,7 @@ const GameHistory: FC<GameHistoryProps> = ({
             </li>
           )
         })}
-      </ol>
+      </StyledList>
     </div>
   )
 }
