@@ -1,9 +1,10 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { CellValues } from '../../utils/calculateWinner'
+import { BoardSize, CellValues } from '../../utils/calculateWinner'
 
 interface CellProps {
   value: string | null
+  size: BoardSize | null
   isWinningCell: boolean
   onClick: VoidFunction
 }
@@ -19,8 +20,35 @@ const getColor = (value: string | null): string => {
   }
 }
 
+const getSize = (size: BoardSize | null): string => {
+  switch (size) {
+    case BoardSize.SMALL:
+      return '5rem'
+    case BoardSize.MEDIUM:
+      return '4rem'
+    case BoardSize.LARGE:
+      return '3rem'
+    default:
+      return '5rem'
+  }
+}
+
+const getFontSize = (size: BoardSize | null): string => {
+  switch (size) {
+    case BoardSize.SMALL:
+      return '3rem'
+    case BoardSize.MEDIUM:
+      return '2.5rem'
+    case BoardSize.LARGE:
+      return '2rem'
+    default:
+      return '3rem'
+  }
+}
+
 const StyledCell = styled.div<{
   value: string | null
+  size: BoardSize | null
   $isWinningCell: boolean
 }>`
   background: var(--background);
@@ -28,15 +56,20 @@ const StyledCell = styled.div<{
   border-color: ${({ $isWinningCell }) =>
     $isWinningCell ? 'var(--error)' : 'var(--background-secondary)'};
   color: ${({ value }) => getColor(value)};
-  font-size: 3rem;
+  font-size: ${({ size }) => getFontSize(size)};
   padding: 0;
   text-align: center;
-  width: 5rem;
-  height: 5rem;
+  width: ${({ size }) => getSize(size)};
+  height: ${({ size }) => getSize(size)};
 `
 
-const Cell: FC<CellProps> = ({ value, isWinningCell, onClick }) => (
-  <StyledCell value={value} onClick={onClick} $isWinningCell={isWinningCell}>
+const Cell: FC<CellProps> = ({ value, size, isWinningCell, onClick }) => (
+  <StyledCell
+    value={value}
+    size={size}
+    onClick={onClick}
+    $isWinningCell={isWinningCell}
+  >
     {value}
   </StyledCell>
 )

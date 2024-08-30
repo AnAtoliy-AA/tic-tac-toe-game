@@ -10,7 +10,10 @@ const dropdownItems = Object.values(BoardSize)
   .filter(Number)
   .map((boardSize) => `${boardSize} x ${boardSize}`)
 
-const SettingsWrapper = styled.div``
+const SettingsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 
 interface SettingsProps {
   gameSize: number
@@ -32,10 +35,10 @@ const Settings: FC<SettingsProps> = ({ gameSize, onChangeGameSize }) => {
   }, [])
 
   return (
-    <SettingsWrapper>
+    <div>
       <Button onClick={toggleIsSettingsOpen}>Settings</Button>
       {isSettingsOpen && (
-        <>
+        <SettingsWrapper>
           <ToggleCheckbox
             label='Change Theme'
             isChecked={isDarkTheme}
@@ -47,9 +50,9 @@ const Settings: FC<SettingsProps> = ({ gameSize, onChangeGameSize }) => {
             onSelect={onChangeGameSize}
             items={dropdownItems}
           />
-        </>
+        </SettingsWrapper>
       )}
-    </SettingsWrapper>
+    </div>
   )
 }
 

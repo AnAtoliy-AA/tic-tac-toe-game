@@ -17,6 +17,14 @@ const StyledGame = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+`
+
+const MainContent = styled.div``
+
+const AdditionalContent = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 
 const Game: FC = () => {
@@ -59,12 +67,7 @@ const Game: FC = () => {
 
   return (
     <StyledGame>
-      <GameHistory
-        gameHistory={history}
-        setIsXNext={setIsXNext}
-        setStepNumber={setStepNumber}
-      />
-      <div>
+      <MainContent>
         <Board
           size={gameSize}
           squares={current}
@@ -72,8 +75,15 @@ const Game: FC = () => {
           winningCells={winningCells}
         />
         <GameInfo winner={winner} isXNext={isXNext} />
-      </div>
-      <Settings gameSize={gameSize} onChangeGameSize={handleChangeGameSize} />
+      </MainContent>
+      <AdditionalContent>
+        <Settings gameSize={gameSize} onChangeGameSize={handleChangeGameSize} />
+        <GameHistory
+          gameHistory={history}
+          setIsXNext={setIsXNext}
+          setStepNumber={setStepNumber}
+        />
+      </AdditionalContent>
     </StyledGame>
   )
 }

@@ -20,7 +20,7 @@ const GameHistory: FC<GameHistoryProps> = ({
 
   return (
     <div>
-      <Title as='h2'>Game history</Title>
+      <Title as='h2'>Game history:</Title>
 
       <ol>
         {gameHistory.map((_step, move) => {

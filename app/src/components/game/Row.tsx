@@ -36,6 +36,7 @@ const Row: FC<RowProps> = ({
           return (
             <Cell
               key={key}
+              size={size}
               value={squares?.[key]}
               onClick={handleClick(key)}
               isWinningCell={isWinningCell}
