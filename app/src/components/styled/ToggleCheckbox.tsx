@@ -21,8 +21,7 @@ const StyledCheckbox = styled.div<{ checked: boolean }>`
   display: inline-block;
   width: 3rem;
   height: 1.5rem;
-  background: ${({ checked }) =>
-    checked ? 'var(--primary)' : 'var(--secondary)'};
+  background: var(--primary);
   border-radius: 1.5rem;
   position: relative;
   transition: background 0.3s;
