@@ -10,8 +10,8 @@ const StyledDropdown = styled.div`
 const DropdownContent = styled.div<{ $isOpen: boolean }>`
   display: ${({ $isOpen }) => ($isOpen ? 'block' : 'none')};
   position: 'absolute';
-  background-color: var(--background);
-  min-width: '10rem';
+  background-color: var(--background-secondary);
+  width: 10rem;
   box-shadow: '0 8px 16px rgba(0, 0, 0, 0.2)';
   z-index: 1;
   border-radius: '0.25rem';
@@ -24,6 +24,7 @@ const DropdownItem = styled.p`
   text-decoration: none;
   display: block;
   transition: background-color 0.3s;
+  border: 1px solid var(--background);
 
   &:hover {
     background-color: var(--primary-light);
